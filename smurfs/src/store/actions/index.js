@@ -27,13 +27,13 @@ export const fetchSmurfs = () => {
   }
 }
 
-export const pushSmurfs = () => {
-  return (dispatch) => {
+export const pushSmurfs = body => {
+  return dispatch => {
     // async actions:
     dispatch({type:PUSH_SMURFS_START})
     // push data
     axios
-      .push('http://localhost:3333/smurfs')
+      .post('http://localhost:3333/smurfs', body)
       .then(res => {
         console.log('res',res);
         dispatch({type:PUSH_SMURFS_SUCCESS, payload:res.data})
